@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고딘 Go-Dein - 전문적인 웹페이지 제작 서비스</title>
+    <link rel="stylesheet" href="/styles/user_main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('header li').hover(
+                function() {
+                    $(this).find('.dropdown-content').stop(true, true).slideDown(200);
+                },
+                function() {
+                    $(this).find('.dropdown-content').stop(true, true).slideUp(200);
+                }
+            );
+
+            $('.gif-container').hover(
+                function() {
+                    $(this).css('transform', 'scale(1.1)');
+                },
+                function() {
+                    $(this).css('transform', 'scale(1)');
+                }
+            );
+
+            $('.menu-toggle').click(function() {
+                $('header nav ul').toggleClass('show');
+            });
+
+            // 화면 크기 변경 시 메뉴 상태 초기화
+            $(window).resize(function() {
+                if ($(window).width() > 768) {
+                    $('header nav ul').removeClass('show');
+                }
+            });
+
+            // User menu toggle
+            $('.user-info').on('click', function() {
+                $(this).find('.dropdown-content').toggle();
+            });
+        });
+
+        //logout 기능
+        $(document).ready(function() {
+        // 로그아웃 버튼 클릭 시 로그아웃 요청을 보냄
+        $('#logout').on('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/api/logout',
+                type: 'POST',
+                success: function(response) {
+                    window.location.href = '/login';  // 로그아웃 후 로그인 페이지로 리디렉션
+                },
+                error: function(error) {
+                    alert('로그아웃에 실패했습니다. 다시 시도해주세요.');
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div id="branding">
+                <h1><a href="/"><span class="highlight">고딘</span> Go-Dein</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/">홈</a></li>
+                    <li><a href="service">서비스</a>
+                        <div class="dropdown-content">
+                            <a href="service">유지보수</a>
+                            <a href="#">제작상황</a>
+                        </div>
+                    </li>
+                    <li><a href="portfolio">포트폴리오</a></li>
+                    <li ><a href="contact">문의하기</a>
+                        <div class="dropdown-content">
+                            <a href="contact">견적 문의</a>
+                            <a href="support">고객지원</a>
+                        </div></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <% if (user) { %>
+                    <div class="user-info">
+                        <a href="#" id="user-name"><%= user.name %>님</a>
+                        <div class="dropdown-content">
+                            <a href="/myinfo">내 정보</a>
+                            <a href="/contracts">계약내용</a>
+                            <a href="#" id="logout">로그아웃</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="login-button-container">
+                        <a href="/login" class="login-btn">로그인</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>전문적인 웹페이지 제작 서비스</h1>
+            <p>당신의 비즈니스에 최적화된 웹사이트를 만들어 드립니다.</p>
+        </div>
+    </section>
+
+    <section id="boxes">
+        <a href="/반응형디자인" class="gif-container">
+            <img src="/images/반디.gif" alt="반응형 디자인" class="responsive-gif">
+            <div class="gif-text">
+                <h3>반응형 디자인</h3>
+                <p>모든 디바이스에 최적화된 웹사이트를 제작합니다.</p>
+            </div>
+        </a>
+        <a href="/최신기술" class="gif-container">
+            <img src="/images/Wasm.jpg" alt="최신 기술" class="responsive-gif">
+            <div class="gif-text">
+                <h3>최신 기술</h3>
+                <p>최신 웹 기술을 활용하여 현대적인 웹사이트를 만듭니다.</p>
+            </div>
+        </a>
+        <a href="/맞춤형솔루션" class="gif-container">
+            <img src="/images/opmg.jpg" alt="맞춤형 솔루션" class="responsive-gif">
+            <div class="gif-text">
+                <h3>맞춤형 솔루션</h3>
+                <p>귀하의 비즈니스에 맞는 맞춤형 웹 솔루션을 제공합니다.</p>
+            </div>
+        </a>
+    </section>
+
+    <footer>
+        <p>고딘 Go-Dein &copy; 2024 </p>
+    </footer>
+</body>
+</html>

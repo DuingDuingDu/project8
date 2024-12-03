@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><a href="/"><span class="highlight">고딘</span> Go-Dein</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/">홈</a></li>
+                    <li><a href="/service">서비스</a></li>
+                    <li><a href="/portfolio">포트폴리오</a></li>
+                    <li><a href="/contact">문의하기</a></li>
+                </ul>
+            </nav>
+            <div class="login-button-container">
+                <a href="/login" class="login-btn">로그인</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <footer>
+        <p>고딘 Go-Dein &copy; 2024</p>
+    </footer>
+</body>
+</html>

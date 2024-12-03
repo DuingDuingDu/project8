@@ -1,0 +1,324 @@
+/* 기존 CSS 그대로 유지 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f8;
+    margin-top: 70px; /* 헤더 높이만큼 추가 */
+}
+.container {
+    width: 80%;
+    margin: auto;
+    position: relative;
+}
+header {
+    background: #1a1a1a;
+    color: white;
+    padding: 10px 0;
+    height: 70px; /* 고정 높이 설정 */
+    border-bottom: #3498db 3px solid;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    display: inline-block;
+}
+header ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 15px; /* 드롭다운 메뉴를 왼쪽으로 30px 이동 */
+}
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px;
+    position: relative;
+}
+header #branding {
+    float: left;
+    margin-left: 15px; /* "고딘 Go-Dein"을 오른쪽으로 15px 이동 */
+}
+header #branding h1 {
+    margin: 0;
+    font-size: 2em;
+}
+header #branding h1 a {
+    color: white;
+    text-decoration: none;
+    font-size: inherit;
+    display: inline;
+}
+header #branding h1 a:hover {
+    color: #3498db;
+}
+header nav {
+    float: right;
+    margin-top: 20px; /* 네비게이션을 조금 더 아래로 이동 */
+}
+header .highlight, header .current a {
+    color: #3498db;
+    font-weight: bold;
+}
+header a:hover {
+    color: #3498db;
+    font-weight: bold;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #575757;
+}
+header li:hover .dropdown-content {
+    display: block;
+}
+#showcase {
+    min-height: 400px;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url() no-repeat center center/cover;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    margin: 0;
+}
+#showcase .container {
+    padding: 100px 0;
+}
+#showcase h1 {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+#showcase p {
+    font-size: 20px;
+}
+#boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#boxes .box {
+    text-align: center;
+    width: 30%;
+    padding: 100px;
+    background: #fff;
+    margin: 1.66%;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+#boxes .box img {
+    width: 90px;
+}
+footer {
+    padding: 20px;
+    margin-top: 20px;
+    color: #ffffff;
+    background-color: #1a1a1a;
+    text-align: center;
+}
+@media(max-width: 768px) {
+    header #branding,
+    header nav,
+    header nav li,
+    #boxes .box {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+    header {
+        padding-bottom: 20px;
+    }
+    #showcase .container {
+        padding: 40px 0;
+    }
+}
+.gif-container {
+    width: 32%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+.gif-container:hover {
+    transform: scale(1.1);
+}
+.responsive-gif {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+.gif-text {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+}
+.gif-container a {
+    color: #333;
+    text-decoration: none;
+}
+.gif-container a:hover {
+    color: #333;
+    text-decoration: none;
+}
+@media (max-width: 768px) {
+    #boxes {
+        flex-direction: column;
+    }
+    .gif-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+@media(max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+    header {
+        padding: 20px 0;
+    }
+    header #branding,
+    header nav,
+    header nav li {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+    header nav {
+        float: left;
+    margin-left: 20px;
+    }
+    header nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex; /* 리스트 아이템을 플렉스로 정렬 */
+        justify-content: flex-end;
+    }
+    header nav ul.show {
+        display: block;
+    }
+    header nav li {
+        padding: 0 20px;
+        position: relative;
+    }
+    .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+    }
+    #showcase h1 {
+        font-size: 40px;
+    }
+    #showcase p {
+        font-size: 18px;
+    }
+    #boxes {
+        flex-direction: column;
+    }
+    .gif-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+header .menu-toggle {
+    display: none; /* 모바일에서만 보이도록 설정 */
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+
+/* 모바일 메뉴 버튼 */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+@media(max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        float: right;
+        margin-top: 10px;
+    }
+}
+
+.login-button-container {
+position: absolute;
+top: 20px;
+right: 10px;
+z-index: 1001;
+}
+
+/* 로그인 버튼 스타일 */
+.login-btn {
+background-color: #1a1a1a;
+color: white;
+padding: 10px 20px;
+border-radius: 5px;
+text-decoration: none;
+transition: background-color 0.3s;
+
+}
+
+.login-btn:hover {
+background-color: #95a5a6;
+}
+
+header .login-button-container, header .usermenu-container {
+    position: absolute;
+    top: 10px;
+    right: -150px; /* 기존보다 더 오른쪽으로 이동 */
+    z-index: 1001;
+}
+.usermenu-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #1a1a1a;
+    border: 1px solid #ddd;
+}
+
+.usermenu-container ul li {
+    padding: 10px;
+}
+
+.usermenu-container:hover ul {
+    display: block;
+}

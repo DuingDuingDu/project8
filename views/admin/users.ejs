@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용자 관리</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="main.html">홈</a></li>
+                <li><a href="users.html">사용자 관리</a></li>
+                <li><a href="employees.html">직원 관리</a></li>
+                <li><a href="orders.html">주문 관리</a></li>
+                <li><a href="finance.html">재무 관리</a></li>
+                <li><a href="inventory.html">재고 관리</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>사용자 관리</h1>
+        <button id="load-users">사용자 불러오기</button>
+        <ul id="user-list"></ul>
+        <form id="add-user-form">
+            <input type="text" id="name" placeholder="이름" required>
+            <input type="email" id="email" placeholder="이메일" required>
+            <button type="submit">추가</button>
+        </form>
+    </main>
+    <footer>
+        <p>고딘 Go-Dein &copy; 2024</p>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            $('#load-users').click(function() {
+                $.get('/users', function(data) {
+                    $('#user-list').empty();
+                    data.forEach(function(user) {
+                        $('#user-list').append('<li>' + user.name + ' (' + user.email + ')</li>');
+                    });
+                });
+            });
+
+            $('#add-user-form').submit(function(event) {
+                event.preventDefault();
+                var name = $('#name').val();
+                var email = $('#email').val();
+                $.post('/users', { name: name, email: email }, function(data) {
+                    alert('사용자가 추가되었습니다: ' + data.name + ' (' + data.email + ')');
+                    $('#name').val('');
+                    $('#email').val('');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

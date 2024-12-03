@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/user_service.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://js.tosspayments.com/v2/standard"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><a href="/"><span class="highlight">고딘</span> Go-Dein</a></h1>
+            </div>
+            <div class="menu-toggle">&#9776;</div>
+            <nav>
+                <ul>
+                    <li><a href="/">홈</a>
+                        <div class="dropdown-content">
+                        </div>
+                    </li>
+                    <li  class="current"><a href="service">서비스</a>
+                        <div class="dropdown-content">
+                            <a href="service">유지보수</a>
+                            <a href="explain">제작상황</a>
+                        </div>
+                    </li>
+                    <li><a href="portfolio">포트폴리오</a>
+                        <div class="dropdown-content">
+                        </div>
+                    </li>
+                    <li><a href="contact">문의하기</a>
+                        <div class="dropdown-content">
+                            <a href="contact">견적 문의</a>
+                            <a href="support">고객센터</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <% if (user) { %>
+                    <div class="user-info">
+                        <a href="#" id="user-name"><%= user.name %>님</a>
+                        <div class="dropdown-content">
+                            <a href="/myinfo">내 정보</a>
+                            <a href="/contracts">계약내용</a>
+                            <a href="#" id="logout">로그아웃</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="login-button-container">
+                        <a href="/login" class="login-btn">로그인</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+    </header>
+
+    <div id="projectSection" class="serviceSection inner">
+        <div class="serviceCont_tabSection_wp maintenance_tabSection_wp">
+            <div id="maintenanceTab" class="serviceCont_tab after scrollreveal2 animated" >
+                <ul>
+                    <li class="tabOn" data-tab="tableMaintenance_tabOn01">유지보수 종류</li>
+                    <li data-tab="tableMaintenance_tabOn02">유지보수 가격</li>
+                    <li data-tab="tableMaintenance_tabOn03">유지보수 건별 단가표</li>
+                    <li data-tab="tableMaintenance_tabOn04">안내사항</li>
+                </ul>
+            </div>
+            <div id="tableMaintenance_tabOn01" class="serviceCont_table maintenance_table maintenanceTableOn">
+                <div class="table_wp">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="tableTitle">서비스명</th>
+                                <th class="tableTitle">절약형</th>
+                                <th class="tableTitle">일반형</th>
+                                <th class="tableTitle">비즈니스</th>
+                                <th class="tableTitle">프리미엄</th>
+                                <th class="tableTitle">맞춤형</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tableTitle">서비스 설명</td>
+                                <td>소규모 사이트 10페이지 내외</td>
+                                <td>중견기업의 사이트 관리</td>
+                                <td>지속적인 관리와 잦은 업데이트가 필요한 곳</td>
+                                <td>소규모 사이트 10페이지 내외</td>
+                                <td>1:1 담당 디자이너의 철저한 유지보수 관리</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">팝업창 스킨서비스</td>
+                                <td>O</td>
+                                <td>O</td>
+                                <td>O</td>
+                                <td>O</td>
+                                <td rowspan="12">꾸준한 관리가 필요한 웹사이트에 적합하여 견적 및 사양은 협의를 필요로 합니다.</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">팝업창 디자인제작</td>
+                                <td>1회/월</td>
+                                <td>2회/월</td>
+                                <td>2회/월</td>
+                                <td>2회/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">텍스트 수정</td>
+                                <td>2회/월</td>
+                                <td>4회/월</td>
+                                <td>4회/월</td>
+                                <td>4회/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">이미지 수정</td>
+                                <td>2회/월</td>
+                                <td>4회/월</td>
+                                <td>4회/월</td>
+                                <td>4회/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">사진/이미지 교체</td>
+                                <td>2회/월</td>
+                                <td>4회/월</td>
+                                <td>4회/월</td>
+                                <td>4회/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">이미지배너 제작</td>
+                                <td>1회/월</td>
+                                <td>2회/월</td>
+                                <td>2회/월</td>
+                                <td>1회/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">동영상파일 변환</td>
+                                <td>X</td>
+                                <td>1회/월</td>
+                                <td>1회/월</td>
+                                <td>2회/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">제품등록</td>
+                                <td>X</td>
+                                <td>5EA/월</td>
+                                <td>10EA/월</td>
+                                <td>10EA/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">신규페이지</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>1PAGE/월</td>
+                                <td>2PAGE/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">게시판 생성</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>1PAGE/월</td>
+                                <td>2PAGE/월</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">메인 변경</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>2회/년</td>
+                            </tr>
+                            <tr>
+                                <td class="tableTitle">이벤트 페이지</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>1회/월</td>
+                                <td>1회/월</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="tableMaintenance_tabOn02" class="serviceCont_table maintenance_table">
+                <div class="table_wp">
+                    <form id="service-form" action="/payment" method="GET">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="tableTitle">서비스명</th>
+                                    <th class="tableTitle">절약형</th>
+                                    <th class="tableTitle">일반형</th>
+                                    <th class="tableTitle">비즈니스</th>
+                                    <th class="tableTitle">프리미엄</th>
+                                    <th class="tableTitle">맞춤형</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="tableTitle">서비스 비용</td>
+                                    <td><label><input type="radio" name="service" value="55000">55,000원/월</label></td>
+                                    <td><label><input type="radio" name="service" value="110000">110,000원/월</label></td>
+                                    <td><label><input type="radio" name="service" value="440000">440,000원/월</label></td>
+                                    <td><label><input type="radio" name="service" value="770000">770,000원/월</label></td>
+                                    <td rowspan="4"><button type="submit" class="apply-service-btn">신청하기</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle">6개월 선납</td>
+                                    <td><label><input type="radio" name="service" value="285000">285,000원/6개월</label></td>
+                                    <td><label><input type="radio" name="service" value="550000">550,000원/6개월</label></td>
+                                    <td><label><input type="radio" name="service" value="2200000">2,200,000원/6개월</label></td>
+                                    <td><label><input type="radio" name="service" value="3850000">3,850,000원/6개월</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle">12개월 선납</td>
+                                    <td><label><input type="radio" name="service" value="550000_12">550,000원/12개월</label></td>
+                                    <td><label><input type="radio" name="service" value="1100000_12">1,100,000원/12개월</label></td>
+                                    <td><label><input type="radio" name="service" value="4400000_12">4,400,000원/12개월</label></td>
+                                    <td><label><input type="radio" name="service" value="7700000_12">7,700,000원/12개월</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="tableTitle">&nbsp;</td>
+                                    <td><button type="submit" class="apply-service-btn">신청하기</button></td>
+                                    <td><button type="submit" class="apply-service-btn">신청하기</button></td>
+                                    <td><button type="submit" class="apply-service-btn">신청하기</button></td>
+                                    <td><button type="submit" class="apply-service-btn">신청하기</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div id="tableMaintenance_tabOn03" class="serviceCont_table maintenance_table">
+                <div class="table_wp">
+                    <table class="pcView">
+                        <tbody><tr>
+                            <td rowspan="2" class="tableTitle">이지제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                            <td rowspan="2" class="tableTitle">팝업창제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3" class="tableTitle">웹브라우저 페이지 기준</td>
+                            <td class="border_botnone"><p class="txtCenter">텍스트중심</p></td>
+                            <td class="border_botnone"><p class="txtCenter">30,000원/페이지</p></td>
+                            <td rowspan="2" class="tableTitle border_botnone">GIF 팝업창</td>
+                            <td class="border_botnone"><p class="txtCenter">간단한 텍스트 위주</p></td>
+                            <td class="border_botnone"><p class="txtCenter">30,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">사진+텍스트중심</p></td>
+                            <td class="border_botnone"><p class="txtCenter">60,000원/페이지</p></td>
+                            <td class="border_botnone"><p class="txtCenter">그래픽 위주</p></td>
+                            <td class="border_botnone"><p class="txtCenter">50,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="txtCenter">그래픽 기준</p></td>
+                            <td><p class="txtCenter">120,000원/페이지</p></td>
+                            <td class="tableTitle">제이쿼리 모션 팝업창</td>
+                            <td><p class="txtCenter">고급형 그래픽</p></td>
+                            <td><p class="txtCenter">200,000원</p></td>
+                        </tr>
+                    </tbody></table>
+    
+                    <table class="mobView">
+                        <tbody><tr>
+                            <td rowspan="2" class="tableTitle">페이지제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3" class="tableTitle">웹브라우저 페이지 기준</td>
+                            <td class="border_botnone"><p class="txtCenter">텍스트중심</p></td>
+                            <td class="border_botnone"><p class="txtCenter">30,000원/페이지</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">사진+텍스트중심</p></td>
+                            <td class="border_botnone"><p class="txtCenter">60,000원/페이지</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="txtCenter">그래픽 기준</p></td>
+                            <td><p class="txtCenter">120,000원/페이지</p></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="tableTitle">팝업창제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="tableTitle">GIF 팝업창</td>
+                            <td class="border_botnone"><p class="txtCenter">간단한 텍스트 위주</p></td>
+                            <td class="border_botnone"><p class="txtCenter">30,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="txtCenter">그래픽 위주</p></td>
+                            <td><p class="txtCenter">50,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">제이쿼리 모션 팝업창</td>
+                            <td><p class="txtCenter">고급형 그래픽</p></td>
+                            <td><p class="txtCenter">200,000원</p></td>
+                        </tr>
+                    </tbody></table>
+    
+                    <!--건별 단가표 두번째22222 -->
+                    <table class="pcView">
+                        <tbody><tr>
+                            <td rowspan="2" class="tableTitle">제품페이지제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                            <td rowspan="2" class="tableTitle">애니메이션제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" class="tableTitle">GIF 배너</td>
+                            <td class="border_botnone"><p class="txtCenter">기존내용 그대로 사진만 교체</p></td>
+                            <td class="border_botnone"><p class="txtCenter">5,000원/사진1장</p></td>
+                            <td rowspan="2" class="tableTitle border_botnone">GIF 애니메이션</td>
+                            <td class="border_botnone"><p class="txtCenter">간단한 애니메이션</p></td>
+                            <td class="border_botnone"><p class="txtCenter">50,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">기존사진 그대로 내용만 교체</p></td>
+                            <td class="border_botnone"><p class="txtCenter">20,000원/1페이지</p></td>
+                            <td class="border_botnone"><p class="txtCenter">복잡한 애니메이션</p></td>
+                            <td class="border_botnone"><p class="txtCenter">150,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">사진+텍스트 중심</p></td>
+                            <td class="border_botnone"><p class="txtCenter">60,000원/1페이지</p></td>
+                            <td class="tableTitle" rowspan="2">제이쿼리 애니메이션</td>
+                            <td class="border_botnone"><p class="txtCenter">간단한 애니메이션</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="txtCenter">그래픽 중심</p></td>
+                            <td><p class="txtCenter">120,000원/1페이지</p></td>
+                            <td><p class="txtCenter">복잡한 애니메이션</p></td>
+                            <td><p class="txtCenter">500,000원</p></td>
+                        </tr>
+                    </tbody></table>
+    
+                    <table class="mobView">
+                        <tbody><tr>
+                            <td rowspan="2" class="tableTitle">제품페이지제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" class="tableTitle">GIF 배너</td>
+                            <td class="border_botnone"><p class="txtCenter">기존내용 그대로 사진만 교체</p></td>
+                            <td class="border_botnone"><p class="txtCenter">5,000원/사진1장</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">기존사진 그대로 내용만 교체</p></td>
+                            <td class="border_botnone"><p class="txtCenter">20,000원/1페이지</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">사진+텍스트 중심</p></td>
+                            <td class="border_botnone"><p class="txtCenter">60,000원/1페이지</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="txtCenter">그래픽 중심</p></td>
+                            <td><p class="txtCenter">120,000원/1페이지</p></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="tableTitle">애니메이션제작</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="tableTitle">GIF 애니메이션</td>
+                            <td class="border_botnone"><p class="txtCenter">간단한 애니메이션</p></td>
+                            <td class="border_botnone"><p class="txtCenter">50,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="txtCenter">복잡한 애니메이션</p></td>
+                            <td><p class="txtCenter">150,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle" rowspan="2">제이쿼리 애니메이션</td>
+                            <td class="border_botnone"><p class="txtCenter">간단한 애니메이션</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="txtCenter">복잡한 애니메이션</p></td>
+                            <td><p class="txtCenter">500,000원</p></td>
+                        </tr>
+                    </tbody></table>
+    
+                    <!--건별 단가표 세번째 333333-->
+                    <table class="pcView">
+                        <tbody><tr>
+                            <td rowspan="2" class="tableTitle">온라인주문서</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                            <td rowspan="2" class="tableTitle">회원관리</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                            <td rowspan="2" class="tableTitle">게시판</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" class="tableTitle">주문서<br>Form Mail</td>
+                            <td class="border_botnone"><p class="txtCenter">기본형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">30,000원</p></td>
+                            <td class="tableTitle" rowspan="4">회원관리<br>관리자모드</td>
+                            <td class="border_botnone"><p class="txtCenter">기본형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">300,000원</p></td>
+                            <td class="tableTitle" rowspan="4">게시판</td>
+                            <td class="border_botnone"><p class="txtCenter">일반형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">주문형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">50,000원</p></td>
+                            <td class="border_botnone"><p class="txtCenter">주문형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">600,000원</p></td>
+                            <td class="border_botnone"><p class="txtCenter">갤러리앨범</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">맞춤형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                            <td class="border_botnone"><p class="txtCenter">맞춤형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">1,000,000원</p></td>
+                            <td class="border_botnone"><p class="txtCenter">특수게시판</p></td>
+                            <td class="border_botnone"><p class="txtCenter">200,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><p class="txtCenter">특수게시판</p></td>
+                            <td><p class="txtCenter">200,000원</p></td>
+                        </tr>
+                    </tbody></table>
+                    <table class="mobView">
+                        <tbody><tr>
+                            <td rowspan="2" class="tableTitle">온라인주문서</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" class="tableTitle">주문서 Form Mail</td>
+                            <td class="border_botnone"><p class="txtCenter">기본형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">30,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">주문형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">50,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">맞춤형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="tableTitle">회원관리</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle" rowspan="4">회원관리 관리자모드</td>
+                            <td class="border_botnone"><p class="txtCenter">기본형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">300,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">주문형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">600,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">맞춤형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">1,000,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="tableTitle">게시판</td>
+                            <td colspan="2" class="tableTitle border_botnone">제작범위</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle">내용</td>
+                            <td class="tableTitle">가격</td>
+                        </tr>
+                        <tr>
+                            <td class="tableTitle" rowspan="4">게시판</td>
+                            <td class="border_botnone"><p class="txtCenter">일반형</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">갤러리앨범</p></td>
+                            <td class="border_botnone"><p class="txtCenter">100,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td class="border_botnone"><p class="txtCenter">특수게시판</p></td>
+                            <td class="border_botnone"><p class="txtCenter">200,000원</p></td>
+                        </tr>
+                        <tr>
+                            <td>특수게시판</td>
+                            <td>200,000원</td>
+                        </tr>
+                    </tbody></table>
+                    <p class="table_subTxt">※ 고객님의 기업에 맞는 웹사이트 제작을 위하여 방문상담/전화상담/온라인상담 어디든 찾아갑니다.</p>
+                </div>
+            </div>
+                </div>
+            </div>
+            <div id="tableMaintenance_tabOn04" class="serviceCont_table maintenance_table">
+                <div class="table_wp">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="tableTitle">안내사항</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left">
+                                    <p>- 상기 내용은 홈페이지 유지보수에 관련된 사항입니다.</p>
+                                    <p>- 홈페이지 전체 색상변경, 레이아웃 변경등은 유지보수가 아닌 리뉴얼에 해당됩니다. 별도 견적문의 바랍니다.</p>
+                                    <p>- 유지보수 비용은 6개월/12개월 선결제 청구 기준입니다. (VAT 포함)</p>
+                                    <p>- 상위의 유지보수 구성외의 추가 유지보수(프로그램, 고급 모션제작, 이벤트페이지 제작 등)는 건별 가격으로 청구 될 수 있습니다.</p>
+                                    <p>- 유지보수 의뢰 접수 후 12~48시간 이내 처리를 원칙으로 합니다. (단, 주말 및 공휴일 제외, 추가작업 제외)</p>
+                                    <p>- 부득이한 일정이 발생할 경우 해당 담당자가 일정을 안내해 드립니다.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>고딘 Go-Dein &copy; 2024</p>
+    </footer>
+
+    <script>
+        /*
+        $(document).ready(function() {
+            $('header li').hover(
+                function() {
+                    $(this).find('.dropdown-content').stop(true, true).slideDown(200);
+                },
+                function() {
+                    $(this).find('.dropdown-content').stop(true, true).slideUp(200);
+                }
+            );
+
+            $('.menu-toggle').click(function() {
+                $('header nav ul').toggleClass('show');
+            });
+
+            // 화면 크기 변경 시 메뉴 상태 초기화
+            $(window).resize(function() {
+                if ($(window).width() > 768) {
+                    $('header nav ul').removeClass('show');
+                }
+            });
+
+            const tabs = document.querySelectorAll("#maintenanceTab ul li");
+            const tabContents = document.querySelectorAll(".serviceCont_table");
+
+            tabs.forEach(tab => {
+                tab.addEventListener("click", function() {
+                    tabs.forEach(t => t.classList.remove("tabOn"));
+                    tab.classList.add("tabOn");
+
+                    tabContents.forEach(content => content.classList.remove("maintenanceTableOn"));
+                    const activeTabContent = document.querySelector(`#${tab.getAttribute("data-tab")}`);
+                    activeTabContent.classList.add("maintenanceTableOn");
+                });
+            });
+        });
+
+        document.getElementById('payment-button').addEventListener('click', function() {
+    const selectedService = document.querySelector('input[name="service"]:checked').value;
+    
+    fetch('/api/payment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            amount: selectedService,
+            orderId: 'order_' + new Date().getTime(),
+            orderName: '유지보수 서비스',
+            successUrl: 'http://localhost:8098/success',
+            failUrl: 'http://localhost:8098/fail'
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.paymentUrl;
+        } else {
+            alert('결제 요청에 실패했습니다.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('결제 요청 중 오류가 발생했습니다.');
+    });
+});
+*/
+
+$(document).ready(function() {
+    $('header li').hover(
+        function() {
+            $(this).find('.dropdown-content').stop(true, true).slideDown(200);
+        },
+        function() {
+            $(this).find('.dropdown-content').stop(true, true).slideUp(200);
+        }
+    );
+
+    $('.menu-toggle').click(function() {
+        $('header nav ul').toggleClass('show');
+    });
+
+    // 화면 크기 변경 시 메뉴 상태 초기화
+    $(window).resize(function() {
+        if ($(window).width() > 768) {
+            $('header nav ul').removeClass('show');
+        }
+    });
+
+    const tabs = document.querySelectorAll("#maintenanceTab ul li");
+    const tabContents = document.querySelectorAll(".serviceCont_table");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function() {
+            tabs.forEach(t => t.classList.remove("tabOn"));
+            tab.classList.add("tabOn");
+
+            tabContents.forEach(content => content.classList.remove("maintenanceTableOn"));
+            const activeTabContent = document.querySelector(`#${tab.getAttribute("data-tab")}`);
+            activeTabContent.classList.add("maintenanceTableOn");
+        });
+    });
+
+    // 라디오 버튼이 선택되었는지 확인하는 코드 추가
+    const form = document.getElementById('service-form');
+    form.addEventListener('submit', function(event) {
+        const selectedService = document.querySelector('input[name="service"]:checked');
+        if (!selectedService) {
+            alert("서비스를 선택해주세요.");
+            event.preventDefault();  // 폼 전송을 막음
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go-Dein 결제 페이지</title>
+    <link rel="stylesheet" href="/styles/user_service.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- payment.ejs -->
+<script src="https://js.tosspayments.com/v1"></script>
+
+
+
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div id="branding">
+                <h1><a href="/"><span class="highlight">고딘</span> Go-Dein</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/">홈</a></li>
+                    <li><a href="service">서비스</a>
+                        <div class="dropdown-content">
+                            <a href="service">유지보수</a>
+                            <a href="#">제작상황</a>
+                        </div>
+                    </li>
+                    <li><a href="portfolio">포트폴리오</a></li>
+                    <li ><a href="contact">문의하기</a>
+                        <div class="dropdown-content">
+                            <a href="contact">견적 문의</a>
+                            <a href="support">고객지원</a>
+                        </div></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <% if (user) { %>
+                    <div class="user-info">
+                        <a href="#" id="user-name"><%= user.name %>님</a>
+                        <div class="dropdown-content">
+                            <a href="/myinfo">내 정보</a>
+                            <a href="/contracts">계약내용</a>
+                            <a href="#" id="logout">로그아웃</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="login-button-container">
+                        <a href="/login" class="login-btn">로그인</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </header>
+    <div class="payment-form-container">
+        <h1 class="payment-title">유지보수 서비스 결제</h1>
+    
+        <form id="payment-form" class="payment-form" action="/api/payment" method="POST">
+            <div class="payment-form-group">
+                <label>서비스명:</label>
+                <span class="payment-form-price"><%= orderName %></span>
+            </div>
+            <div class="payment-form-group">
+                <label>신청자:</label>
+                <span><%= user.name %></span>
+            </div>
+            <div class="payment-form-group">
+                <label>사이트 URL:</label>
+                <input type="text" name="siteUrl" class="payment-form-input" required>
+            </div>
+            <div class="payment-form-group">
+                <label>가격:</label>
+                <span class="payment-form-price"><%= amount %>원</span>
+            </div>
+            <input type="hidden" name="amount" value="<%= amount %>">
+            <input type="hidden" name="orderId" value="<%= orderId %>">
+            <input type="hidden" name="orderName" value="<%= orderName %>">
+            <button type="submit" class="payment-form-button">결제하기</button>
+            
+        </form>
+    </div>
+    
+    
+    <footer>
+        <p>고딘 Go-Dein &copy; 2024 </p>
+    </footer>
+
+    <script>
+      
+    </script>
+</body>
+</html>

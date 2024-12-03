@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Go-Dein 제작상황</title>
+    <link rel="stylesheet" href="/styles/user_contact.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><a href="/"><span class="highlight">고딘</span> Go-Dein</a></h1>
+            </div>
+            <div class="menu-toggle">&#9776;</div>
+            <nav>
+                <ul>
+                    <li><a href="/">홈</a>
+                        <div class="dropdown-content">
+                        </div>
+                    </li>
+                    <li class="current"><a href="service">서비스</a>
+                        <div class="dropdown-content">
+                            <a href="service">유지보수</a>
+                            <a href="explain">제작상황</a>
+                        </div>
+                    </li>
+                    <li><a href="portfolio">포트폴리오</a>
+                        <div class="dropdown-content">
+                        </div>
+                    </li>
+                    <li><a href="contact">문의하기</a>
+                        <div class="dropdown-content">
+                            <a href="contact">견적 문의</a>
+                            <a href="support">고객센터</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <% if (user) { %>
+                    <div class="user-info">
+                        <a href="#" id="user-name"><%= user.name %>님</a>
+                        <div class="dropdown-content">
+                            <a href="/myinfo">내 정보</a>
+                            <a href="/contracts">계약내용</a>
+                            <a href="#" id="logout">로그아웃</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="login-button-container">
+                        <a href="/login" class="login-btn">로그인</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div class="visualSubMenu">
+            
+        </div>
+        <div class="title">
+            <h1>INSIDE Go-Dein</h1>
+        </div>
+        <div class="insideCont_wp insideMaintenance_wp">
+            <div class="insideCont_list maintenance_list">
+                <ul id="mainten_list">
+                    <!-- List items will be appended here -->
+                </ul>
+            </div>
+            <div id="insideMoreBtn" class="bottomListMoreBtn">
+                <a href="javascript:;" id="mainteno_list_btn" style="cursor:pointer;">더보기</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>고딘 Go-Dein &copy; 2024</p>
+    </footer>
+    <script>
+        var page = 1;
+        var data = {
+            "result": "true",
+            "msg": [
+                {
+                    "count": 15503,
+                    "mb_nick": "[주식회사 씨인사이드]",
+                    "eo_subject": "비밀번호 변경 요청 건",
+                    "em_status": "신규신청",
+                    "eo_reg_date": "2024-07-24",
+                    "em_name": "정은숙"
+                },
+                {
+                    "count": 15504,
+                    "mb_nick": "[주식회사 씨인사이드]",
+                    "eo_subject": "비밀번호 변경 요청",
+                    "em_status": "결제확인",
+                    "eo_reg_date": "2024-07-24",
+                    "em_name": "정은숙"
+                },
+                {
+                    "count": 15505,
+                    "mb_nick": "[구립동작실버센터]",
+                    "eo_subject": "조직도 변경",
+                    "em_status": "작업중",
+                    "eo_reg_date": "2024-07-24",
+                    "em_name": "장우영"
+                },
+                {
+                    "count": 15506,
+                    "mb_nick": "[중부재단]",
+                    "eo_subject": "홈페이지 메인 키워드 부분 유지보...",
+                    "em_status": "작업완료",
+                    "eo_reg_date": "2024-07-24",
+                    "em_name": "김재현"
+                }
+            ]
+        };
+
+        function renderList() {
+            var add_html = "";
+            $.each(data.msg, function(key, state) {
+                add_html += "<li class='maintenance_listBox'><div class='listTxt'><p class='listNum_txt'>" + state.count + "</p><p class='listTitle_txt'><span class='companyName'>" + state.mb_nick + "</span> " + state.eo_subject + "</p><div class='listStateBox'><ul><li class='stateOn'>" + state.em_status + "</li></ul></div><p class='listDate_txt'><span>📅</span> " + state.eo_reg_date + "</p><p class='listworker_Txt'>" + state.em_name + "</p></div></li>";
+            });
+            $("#mainten_list").append(add_html);
+        }
+
+        $(document).ready(function() {
+            $("#mainteno_list_btn").click(function() {
+                page++;
+                renderList();
+            });
+
+            renderList();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('header li').hover(
+                function() {
+                    $(this).find('.dropdown-content').stop(true, true).slideDown(200);
+                },
+                function() {
+                    $(this).find('.dropdown-content').stop(true, true).slideUp(200);
+                }
+            );
+
+            $('.menu-toggle').click(function() {
+                $('header nav ul').toggleClass('show');
+            });
+
+            $(window).resize(function() {
+                if ($(window).width() > 768) {
+                    $('header nav ul').removeClass('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

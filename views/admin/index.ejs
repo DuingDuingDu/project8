@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 기반 ERP 프로그램</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="header-title">
+            <h1>ERP 시스템</h1>
+        </div>
+        <div class="user-info">
+            <span><%= user.username %>님</span>
+            <button id="logout-button">로그아웃</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" class="menu-item" data-section="section1">회계관리</a></li>
+            <li><a href="#" class="menu-item" data-section="section2">인사관리</a></li>
+            <li><a href="#" class="menu-item" data-section="section3">판매관리</a></li>
+            <li><a href="#" class="menu-item" data-section="section4">회원관리</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section data-section="section1" class="content">
+            <h2>회계관리</h2>
+            <!-- 회계관리 관련 UI와 기능 -->
+        </section>
+        <section data-section="section2" class="content">
+            <h2>인사관리</h2>
+            <!-- 인사관리 관련 UI와 기능 -->
+        </section>
+        <section data-section="section3" class="content">
+            <h2>판매관리</h2>
+            <!-- 판매관리 관련 UI와 기능 -->
+        </section>
+        <section data-section="section4" class="content">
+            <h2>회원관리</h2>
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 회원 정보가 여기에 동적으로 추가됩니다 -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="/scripts/admin_index.js"></script>
+</body>
+</html>

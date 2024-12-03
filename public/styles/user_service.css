@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f8;
+    margin-top: 150px; /* 헤더 높이만큼 추가 */
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    position: relative;
+}
+
+header {
+    background: #1a1a1a;
+    color: white;
+    padding: 10px 0;
+    height: 70px; /* 고정 높이 설정 */
+    border-bottom: #3498db 3px solid;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+}
+
+header #branding {
+    float: left;
+    margin-left: 15px; /* "고딘 Go-Dein"을 오른쪽으로 15px 이동 */
+}
+
+header #branding h1 {
+    margin: 0;
+    font-size: 2em;
+    
+}
+
+header #branding h1 a {
+    color: white;
+    text-decoration: none;
+    font-size: inherit;
+}
+
+header #branding h1 a:hover {
+    color: #3498db;
+}
+
+header nav {
+    float: right;
+    margin-top: 20px;
+}
+
+header nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    height: 70px; /* nav 높이 설정 */
+    
+}
+
+header nav ul li {
+    padding: 0 20px;
+    position: relative;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    display: inline-block;
+    
+}
+
+header .highlight, header .current > a {
+    color: #3498db;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #575757;
+}
+
+header li:hover .dropdown-content {
+    display: block;
+}
+
+.serviceCont_tabSection_wp {
+    margin-top: 40px; /* 탭과 컨텐츠 사이 여백 추가 */
+}
+
+.serviceCont_tab ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* 탭을 가운데 정렬 */
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    width: 70%; /* ul 요소의 너비를 70%로 설정 */
+    margin: auto; /* 가운데 정렬을 위해 자동 여백 */
+}
+
+.serviceCont_tab ul li {
+    cursor: pointer;
+    padding: 10px 15px;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    flex: 1;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.serviceCont_tab ul li:hover {
+    background: #ddd;
+}
+
+.serviceCont_tab ul li.tabOn {
+    background: #3498db;
+    color: white;
+}
+
+.serviceCont_table {
+    display: none;
+    margin-top: 110px; /* 테이블과 탭 사이의 여백 제거 */
+}
+
+.serviceCont_table table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* 테이블의 레이아웃을 고정 */
+    background: white;  
+}
+
+.serviceCont_table table th, .serviceCont_table table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    width: 16.66%; /* 테이블의 각 셀의 넓이를 동일하게 설정 */
+}
+
+.serviceCont_table table th {
+    background: #f4f4f8;
+}
+
+.serviceCont_table table td p {
+    margin: 0;
+}
+
+.serviceCont_table.maintenanceTableOn {
+    display: block;
+}
+
+.tableTitle {
+    font-weight: bold;
+    background: #f9f9f9;
+    border-bottom: 2px solid #3498db;
+}
+
+@media screen and (max-width: 768px) {
+    .pcView {
+        display: none;
+    }
+    .mobView {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .mobView {
+        display: none;
+    }
+}
+
+/* 모바일 메뉴 버튼 */
+.menu-toggle {
+    display: none; /* 모바일에서만 보이도록 설정 */
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+@media(max-width: 768px) {
+    header {
+        padding: 20px 0;
+        flex-direction: column;
+        height: auto;
+    }
+    header #branding,
+    header nav,
+    header nav li {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+    header nav {
+        margin-top: 10px;
+    }
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+    header nav ul.show {
+        display: block;
+    }
+    header nav li {
+        padding: 10px 0;
+    }
+    .menu-toggle {
+        display: block;
+        float: right;
+        margin-top: 10px;
+    }
+}
+
+footer {
+    padding: 20px;
+    margin-top: 200px;
+    color: #ffffff;
+    background-color: #1a1a1a;
+    text-align: center;
+}
+.border_botnone {
+    border-bottom: none; /* 아래쪽 경계선을 없앱니다 */
+}
+.table_wp{
+    width: 75%;
+    margin: auto;
+}
+
+
+.login-button-container {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    z-index: 999;
+    }
+    
+    .login-btn {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 10px 20px; /* 텍스트의 상하좌우 여백을 추가합니다. */
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        display: inline-block; /* 버튼을 가로로 배치합니다. */
+        white-space: nowrap; /* 텍스트가 줄바꿈 되지 않도록 합니다. */
+    }
+    
+    
+    .login-btn:hover {
+    background-color: #95a5a6;
+    }
+    
+     header .user-menu {
+        position: absolute;
+        top: 20px;
+        right: -120px; /* 기존보다 더 오른쪽으로 이동 */
+        z-index: 999;
+    }
+    .user-menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: none;
+        position: absolute;
+        right: 0px;
+        background-color: #1a1a1a;
+        border: 1px solid #ddd;
+    }
+    
+    .user-menu ul li {
+        padding: 10px;
+    }
+    
+    .user-info:hover .dropdown-content {
+        display: block;
+    }
+    
+    label {
+        display: flex;
+        align-items: center;
+    }
+    
+    /* 라디오 버튼 위치 통일 */
+    label input[type="radio"] {
+        margin-right: 10px; /* 텍스트와 라디오 버튼 사이의 간격 조절 */
+    }
+
+    /* 결제 ejs 스타일시트 */
+
+    .payment-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .payment-form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 20px auto; /* 중앙 정렬 */
+        margin-top: 20px; /* h1과 폼 사이의 간격 */
+    }
+    
+    .payment-form-group {
+        margin-bottom: 15px;
+    }
+    
+    .payment-form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    .payment-form-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    .payment-form-price {
+        font-size: 1.2em;
+        color: #e67e22;
+    }
+    
+    .payment-form-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #1a1a1a;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .payment-form-button:hover {
+        background-color: #d35400;
+    }
+    
